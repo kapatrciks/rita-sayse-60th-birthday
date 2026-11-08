@@ -29,25 +29,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
       :root {
-        --ivory: #faf6ec;
-        --cream: #f1e9d6;
-        --sage: #a9b8a0;
-        --green: #2f4a38;
-        --deep: #1d3226;
-        --gold: #b9955a;
-        --blush: #e8c4c0;
-        --rose: #b9737a;
-        --lav: #cbbfdc;
-        --ink: #1c2b21;
-        --gold-d: #7d5f26;
+        --serif: "Cormorant Garamond", serif;
+        --script: "Pinyon Script", cursive;
+        --sans: "Jost", sans-serif;
         --bg: var(--ivory);
         --fg: var(--ink);
-        --serif: "Cormorant Garamond", Georgia, serif;
-        --script: "Pinyon Script", cursive;
-        --sans: "Jost", system-ui, sans-serif;
-        box-sizing: border-box;
-        padding-top: env(safe-area-inset-top, 0px);
-        padding-bottom: env(safe-area-inset-bottom, 0px);
+        --ivory: #fffcf5; /* warm white */
+        --cream: #fdeef0; /* blossom tint */
+        --sage: #cfe6c8; /* fresh mint */
+        --green: #3f6b4a; /* leaf green: buttons, headings */
+        --deep: #25402e; /* deep garden green */
+        --gold: #c9a15b;
+        --gold-d: #8a6420;
+        --blush: #f8e1e3;
+        --rose: #c2567c;
+        --lav: #b8a0c8;
+        --ink: #2b3a2f;
       }
       @media (prefers-color-scheme: dark) {
         :root:not([data-theme="light"]) {
@@ -270,6 +267,7 @@
       }
       nav.solid {
         background: rgba(250, 246, 236, 0.92);
+        -webkit-backdrop-filter: blur(8px);
         backdrop-filter: blur(8px);
         box-shadow: 0 1px 0 rgba(185, 149, 90, 0.3);
       }
@@ -526,6 +524,7 @@
         margin-top: 50px;
       }
       .g {
+        -webkit-column-break-inside: avoid;
         break-inside: avoid;
         margin: 0 0 18px;
         display: block;
@@ -1085,7 +1084,7 @@
         transition: opacity 1s;
         cursor: pointer;
         touch-action: manipulation;
-        will-change: transform;
+        -webkit-text-fill-color: transparent;
       }
       nav ul {
         gap: clamp(14px, 2vw, 28px);
@@ -1657,9 +1656,11 @@
             </p>
             <a class="btn rv" style="--d: 5" href="#details">See the details</a>
           </div>
-          <div class="frame clip" data-img="images/celebrant.jpg">
-            <img src="images/celebrant.jpg" alt="" srcset="" />
-            <div class="ph">Celebrant photo<br />(images/celebrant.jpg)</div>
+          <div class="frame clip">
+            <div class="ph" data-img="images/celebrant.jpg">
+              <img src="images/celebrant.jpg" alt="" srcset="" />
+              Celebrant photo<br />(images/celebrant.jpg)
+            </div>
           </div>
         </div>
       </section>
@@ -1923,7 +1924,7 @@
         message:
           "Sixty years of beautiful memories, meaningful friendships, endless love, and countless blessings.\n\nAs we celebrate this special milestone, we would be delighted to share this memorable occasion with the people who have made life’s journey even more meaningful.",
         gallery: [
-          ["Family memories", "images/gallery-1.jpg"],
+          ["Family memories", "images/celebrant.jpg"],
           ["Travel memories", "images/gallery-2.jpg"],
           ["Celebrations", "images/gallery-3.jpg"],
           ["Portraits", "images/gallery-4.jpg"],
@@ -1954,7 +1955,7 @@
         if (!s) return;
         const i = new Image();
         i.alt = "";
-        i.loading = "lazy";
+        // i.loading = "lazy";
         i.onload = () => el.appendChild(i);
         i.src = s;
       }
@@ -2786,6 +2787,10 @@
           requestAnimationFrame(f);
         })();
       }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+    <script>
+      eruda.init();
     </script>
   </body>
 </html>
